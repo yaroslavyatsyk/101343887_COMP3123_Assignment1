@@ -6,6 +6,12 @@ const userModel = require('../models/users')
 const route = express.Router()
 
 route.post('/user/signup', async(req, res) => {
+
+    if(req.body.content) {
+        return res.status(400).send({
+            message: "User content can not be empty"
+        });
+    }
     const user = new userModel(req.body)
     try {
         await user.save()
@@ -17,6 +23,11 @@ route.post('/user/signup', async(req, res) => {
 })
 
 route.post('/user/login/:username/:password', async(req, res) => {
+    if(req.body.content) {
+        return res.status(400).send({
+            message: "User content can not be empty"
+        });
+    }
     const user = await userModel.findOne({username: req.params.username})
 
     let password = req.params.password
