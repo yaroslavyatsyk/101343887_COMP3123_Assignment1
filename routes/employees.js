@@ -25,7 +25,7 @@ route.post('/employees', async(req, res) => {
 route.get('/employees', async(req, res) => {
     try {
         const employees = await emp.find({})
-        res.status(200).send(foods)
+        res.status(200).send(employees)
     }
     catch(error) {
         res.status(500).send(error)
