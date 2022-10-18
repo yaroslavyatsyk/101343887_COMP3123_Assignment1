@@ -4,11 +4,11 @@ const userRouter = require('./routes/users')
 const employeeRouter = require('./routes/employees')
 
 const app = express()
+app.use(express.json())
 
-app.use('/api/user',userRouter)
+app.use('/api',userRouter)
 app.use('/api/emp',employeeRouter)
 
-app.use(express.json())
 
 mongoose.Promise = global.Promise
 
@@ -26,6 +26,6 @@ app.get('/', (req, res) => {
 });
 
 
-app.listen(3030, () => {
-    console.log(`Server is listening on port localhost:${3030}`);
+app.listen(3035, () => {
+    console.log(`Server is listening on port http://localhost:${3035}`);
 });

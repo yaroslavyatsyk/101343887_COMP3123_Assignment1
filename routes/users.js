@@ -12,10 +12,10 @@ route.post('/user/signup', async(req, res) => {
             message: "User content can not be empty"
         });
     }
-    const user = new userModel(req.body)
-    try {
+    try { 
+        const user = new userModel(req.body)
         await user.save()
-        res.status({code: 201, message: "Successfully added user"}).send(user)
+        res.status(201, { message: "Successfully added user"}).send(user)
     }
     catch(error) {
         res.status(500).send(error.message)
@@ -28,13 +28,13 @@ route.post('/user/login/:username/:password', async(req, res) => {
             message: "User content can not be empty"
         });
     }
-    const user = await userModel.findOne({username: req.params.username})
-
     let password = req.params.password
     let userName = req.params.username
+    const user = await userModel.findOne({username : userName})
+
 
     if(userName == user.username && password == user.password) {
-        res.status(200).send({username: user.username, password: user.password, message: "Successfully signed in"})
+        res.status(200).send({"username": user.username, "password": user.password, message: "Successfully signed in"})
     }
     else {
         res.status(500).send({status: false, message: "Incorrect username or password"})
