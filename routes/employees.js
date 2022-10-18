@@ -65,8 +65,8 @@ route.put('/employees/:eid', async(req, res) => {
         console.log(req.body)
         const updatedEmployee = await emp.findByIdAndUpdate(req.params.eid, req.body)
         //console.log(updatedBook)
-        const uemp = await updatedEmployee.save()
-        res.status(202).send(uemp)
+        await updatedEmployee.save()
+        res.status(202).send(req.body)
       } catch (err) {
         res.status(500).send(err)
       }
