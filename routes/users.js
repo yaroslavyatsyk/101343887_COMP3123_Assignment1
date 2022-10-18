@@ -34,7 +34,7 @@ route.post('/user/login/:username/:password', async(req, res) => {
 
 
     if(userName == user.username && password == user.password) {
-        res.status(200).send({"username": user.username, "password": user.password, message: "Successfully signed in"})
+        res.status(200).send({"status" : true, "username": user.username, message: "Successfully signed in"})
     }
     else {
         res.status(500).send({status: false, message: "Incorrect username or password"})
