@@ -22,14 +22,14 @@ route.post('/user/signup', async(req, res) => {
     }
 })
 
-route.post('/user/login/:username/:password', async(req, res) => {
+route.post('/user/login', async(req, res) => {
     if(req.body.content) {
         return res.status(400).send({
             message: "User content can not be empty"
         });
     }
-    let password = req.params.password
-    let userName = req.params.username
+    let password = req.body.password
+    let userName = req.body.username
     const user = await userModel.findOne({username : userName})
 
 
