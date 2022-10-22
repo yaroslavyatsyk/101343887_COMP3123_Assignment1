@@ -4,21 +4,23 @@ const emp = require('../models/employees')
 
 route.post('/employees', async(req, res) => {
     // Validate request
-    if(req.body) {
+    const newEmployee = req.body;
+    if(!newEmployee) {
         return res.status(400).send({
             message: "Employee content can not be empty"
         });
     }
-    
+    else {
 
     try {
-        const employee = new emp(req.body)
+        const employee = new emp(newEmployee)
         await employee.save()
         res.status(201).send(employee)
     }
     catch(error) {
         res.status(500).send(error)
     }
+}
 });
 
 //http://mongoosejs.com/docs/api.html#find_find

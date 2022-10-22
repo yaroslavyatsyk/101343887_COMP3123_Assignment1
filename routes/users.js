@@ -7,19 +7,22 @@ const route = express.Router()
 
 route.post('/user/signup', async(req, res) => {
 
-    if(req.body) {
+    const addedUser = req.body;
+    if(!addedUser) {
         return res.status(400).send({
             message: "User content can not be empty"
         });
     }
+    else {
     try { 
-        const user = new userModel(req.body)
+        const user = new userModel(addedUser)
         await user.save()
         res.status(201, { message: "Successfully added user"}).send(user)
     }
     catch(error) {
         res.status(500).send(error.message)
     }
+}
 })
 
 route.post('/user/login', async(req, res) => {
