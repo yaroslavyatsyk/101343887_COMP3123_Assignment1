@@ -5,7 +5,7 @@ const emp = require('../models/employees')
 route.post('/employees', async(req, res) => {
     // Validate request
     const newEmployee = req.body;
-    if(newEmployee) {
+    if(JSON.stringify(newEmployee) == null || JSON.stringify(newEmployee) == '{}') {
         return res.status(400).send({
             message: "Employee content can not be empty"
         });
@@ -39,7 +39,7 @@ route.get('/employees', async(req, res) => {
 route.get('/employees/:eid', async(req, res) => {
     // Validate request
     let id = req.params.eid
-    if(id) {
+    if(JSON.stringify(id) == null || JSON.stringify(id) == '{}') {
         return res.status(400).send({
             message: "Employee content can not be empty"
         });
@@ -61,7 +61,7 @@ route.get('/employees/:eid', async(req, res) => {
 route.put('/employees/:eid', async(req, res) => {
     // Validate request
     let id = req.params.eid
-    if(id) {
+    if(JSON.stringify(id) == null || JSON.stringify(id) == '{}') {
         return res.status(400).send({
             message: "Employee content can not be empty"
         });
@@ -84,7 +84,7 @@ route.put('/employees/:eid', async(req, res) => {
 route.delete('/employees/:eid', async (req, res) => {
     // Validate request
     let id = req.params.eid
-    if(id) {
+    if(JSON.stringify(id) == null || JSON.stringify(id) == '{}') {
         return res.status(400).send({
             message: "Employee content can not be empty"
         });
