@@ -26,13 +26,15 @@ route.post('/user/signup', async(req, res) => {
 })
 
 route.post('/user/login', async(req, res) => {
-    if(req.body.content) {
+    const loginUser = req.body
+    if(!loginUser) {
         return res.status(400).send({
             message: "User content can not be empty"
         });
     }
-    let password = req.body.password
-    let userName = req.body.username
+    else {
+    let password = loginUser.password
+    let userName = loginUser.username
     const user = await userModel.findOne({username : userName})
 
     if(!user) {
@@ -41,8 +43,6 @@ route.post('/user/login', async(req, res) => {
     else if(userName == user.username && password == user.password) {
         res.status(200).send({"status" : true, "username": user.username, message: "Successfully signed in"})
     }
-    else {
-        res.status(500).send({status: false, message: "Incorrect username or password"})
-    }
+}
 })
 module.exports = route
