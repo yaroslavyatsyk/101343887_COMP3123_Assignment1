@@ -7,7 +7,7 @@ const route = express.Router()
 
 route.post('/user/signup', async(req, res) => {
 
-    if(req.body.content) {
+    if(req.body) {
         return res.status(400).send({
             message: "User content can not be empty"
         });

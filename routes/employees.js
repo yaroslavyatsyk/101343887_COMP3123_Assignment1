@@ -4,7 +4,7 @@ const emp = require('../models/employees')
 
 route.post('/employees', async(req, res) => {
     // Validate request
-    if(req.body.content) {
+    if(req.body) {
         return res.status(400).send({
             message: "Employee content can not be empty"
         });
@@ -36,7 +36,7 @@ route.get('/employees', async(req, res) => {
 //http://mongoosejs.com/docs/api.html#findbyid_findById
 route.get('/employees/:eid', async(req, res) => {
     // Validate request
-    if(req.body.content) {
+    if(req.body) {
         return res.status(400).send({
             message: "Employee content can not be empty"
         });
@@ -56,7 +56,7 @@ route.get('/employees/:eid', async(req, res) => {
 //http://mongoosejs.com/docs/api.html#findbyidandupdate_findByIdAndUpdate
 route.put('/employees/:eid', async(req, res) => {
     // Validate request
-    if(req.body.content) {
+    if(req.body) {
         return res.status(400).send({
             message: "Employee content can not be empty"
         });
@@ -77,7 +77,7 @@ route.put('/employees/:eid', async(req, res) => {
 //http://mongoosejs.com/docs/api.html#findbyidandremove_findByIdAndRemove
 route.delete('/employees/:eid', async (req, res) => {
     // Validate request
-    if(req.body.content) {
+    if(req.body) {
         return res.status(400).send({
             message: "Employee content can not be empty"
         });
