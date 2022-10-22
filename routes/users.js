@@ -27,7 +27,7 @@ route.post('/user/signup', async(req, res) => {
 
 route.post('/user/login', async(req, res) => {
     const loginUser = req.body
-    if(!loginUser) {
+    if(loginUser) {
         return res.status(400).send({
             message: "User content can not be empty"
         });
