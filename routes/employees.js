@@ -38,11 +38,13 @@ route.get('/employees', async(req, res) => {
 //http://mongoosejs.com/docs/api.html#findbyid_findById
 route.get('/employees/:eid', async(req, res) => {
     // Validate request
-    if(req.body) {
+    let id = req.params.eid
+    if(!id) {
         return res.status(400).send({
             message: "Employee content can not be empty"
         });
     }
+    else {
     
     try {
         const employee = await emp.findById(req.params.eid)
@@ -51,18 +53,20 @@ route.get('/employees/:eid', async(req, res) => {
     catch(error) {
         res.status(500).send(error)
     }
-    
+}
 });
 
 //TODO - Update a Note with noteId
 //http://mongoosejs.com/docs/api.html#findbyidandupdate_findByIdAndUpdate
 route.put('/employees/:eid', async(req, res) => {
     // Validate request
-    if(req.body) {
+    let id = req.params.eid
+    if(!id) {
         return res.status(400).send({
             message: "Employee content can not be empty"
         });
     }
+    else {
     try {
         console.log(req.body)
         const updatedEmployee = await emp.findByIdAndUpdate(req.params.eid, req.body)
@@ -72,19 +76,21 @@ route.put('/employees/:eid', async(req, res) => {
       } catch (err) {
         res.status(500).send(err)
       }
-    
+    }
 });
 
 //TODO - Delete a Note with noteId
 //http://mongoosejs.com/docs/api.html#findbyidandremove_findByIdAndRemove
 route.delete('/employees/:eid', async (req, res) => {
     // Validate request
-    if(req.body) {
+    let id = req.params.eid
+    if(!id) {
         return res.status(400).send({
             message: "Employee content can not be empty"
         });
     }
-    //TODO - Write your code here to delete the note using noteid
+    //TODO - Write your code here to delete the note using
+    else {
     try {
         const employee = await emp.findByIdAndDelete(req.params.eid)
     
@@ -95,5 +101,6 @@ route.delete('/employees/:eid', async (req, res) => {
       } catch (err) {
         res.status(500).send(err)
       }
+    }
 });
 module.exports = route
