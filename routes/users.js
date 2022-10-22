@@ -8,7 +8,7 @@ const route = express.Router()
 route.post('/user/signup', async(req, res) => {
 
     const addedUser = req.body;
-    if(addedUser) {
+    if(JSON.stringify(addedUser) == null || JSON.stringify(addedUser) == '{}') {
         return res.status(400).send({
             message: "User content can not be empty"
         });
@@ -27,7 +27,7 @@ route.post('/user/signup', async(req, res) => {
 
 route.post('/user/login', async(req, res) => {
     const loginUser = req.body
-    if(loginUser) {
+    if(JSON.stringify(loginUser) == null || JSON.stringify(loginUser) == '{}') {
         return res.status(400).send({
             message: "User content can not be empty"
         });
