@@ -35,9 +35,7 @@ route.post('/user/login', async(req, res) => {
     if(!user) {
         res.status(404).send({"message": "Error of authentification"})
     }
-
-
-    if(userName == user.username && password == user.password) {
+    else if(userName == user.username && password == user.password) {
         res.status(200).send({"status" : true, "username": user.username, message: "Successfully signed in"})
     }
     else {
